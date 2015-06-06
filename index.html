@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta name='description' content='JavaScript Basics'>
+  <meta name='Tony Brown' content='Professional JS for web developers'>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name='viewport' content='width=device-width'>
+  <!--<link rel='stylesheet' href='assets/css/prettify.css'>-->
+  <link rel="stylesheet" href="assets/css/tomorrow-night.css">
+  <link rel='stylesheet' href='assets/css/normalize.css'>
+  <link rel='stylesheet' href='assets/css/main.css'>
+  <script src='assets/js/modernizr.js'></script>
+  <script src='assets/js/prettify.js'></script>
+  <script src='assets/js/moment.js'></script>
+</head>
+<body onload="prettyPrint()">
+  <nav class='cf'>
+    <h2>Main Nav</h2>
+    <ul class='cf' id="main-nav">
+      <li class="item1"><a href="#vars">variable</a></li>
+      <li class="item2"><a href="#typeof">typeof</a></li>
+      <li class="item3"><a href="#undefined">undefined</a></li>
+      <li class="item4"><a href="#null">null</a></li>
+      <li class="item5"><a href="#boolean">boolean</a></li>
+      <li class="item6"><a href="#num">numbers</a></li>
+    </ul>
+  </nav>
+  <header>
+    <a href="#toTop"></a>
+    <div class='cf inner'>
+      <h1>Professional JavaScript</h1>
+      <p>for web developers 3<sup>rd</sup> edition.</p>
+    </div>
+  </header>
+  <section class='cf' id="main">
+    <div class='inner'>
+      <article id='main-article'>
+        <small>
+          <em>This is for the mod dev study group. I am documenting the reading from <b>Professional JavaScrpt for Web Developers</b>
+          It helps me to remember if I write it all down ( I guess it's how I retain things better ) and hopefully
+          it will help others that are starting out learning JavaScript.</em>
+        </small>
+        <h1>Chapter 3</h1>
+        <h3 id='vars'>Varibales</h3>
+        <p>
+          In ECMAScript variables are loosely typed, meaining that a variable can hold any type
+          of data. Every variable is simply a named placeholder for a value. To define a variable,
+          use the <b>var</b> operator(note that <b>var</b> is a keyword) followed by the variable
+          name (an identifier, as described earlier), like this: <code class='white'>var message;</code>
+        </p>
+        <p>
+          This code defines a variable named <b>message</b> that can be used to hold any value.
+          (Without initialization, it holds a special value <b>undefined</b> which will be discussed
+          in the next section.) ECMAScript implements variable initialization, so it's possible to
+          define and set it's value at the same time, as in this example:<br>
+        </p>
+          <pre class='prettyprint code'>var message = "Hi!";</pre>
+        <p>
+          Here, <b>message</b> is defined to hold a string value of <em>"Hi!".</em>
+          Doing this initialization doesn't mark the variable as being a string type;
+          it's simply the assignment of a value to the variable. It is still possible
+          not only to change the value stored in the variable but also change it's data
+          type (which is possible but not incouraged) like this:
+        </p>
+
+        <pre class='prettyprint code'>var message = 'Hi!';<br> <b>message = 100;</b> // legal but not recommended.</pre>
+
+        <p>
+          It's important to not that using the <b>var</b> operator to define a variable makes it local
+          to the scope in which it was defined. For example, defining a variable inside a function using
+          <b>var</b> means that the variable is destroyed as soon as the function exits, as shown here:
+        </p>
+
+        <pre class='prettyprint code'>function test () {<br>&nbsp;&nbsp; var message = 'hi';<br>}</pre>
+        <pre class='prettyprint code'>test()<br>alert(message)// error, message is not accessible.</pre><br /><br />
+
+        <pre class='prettyprint code'>function test () {<br>&nbsp;&nbsp; message = 'hi';<br>}<br></pre>
+        <pre class='prettyprint code'>test()<br>alert(message)// hi, because message is now a global variable.</pre><br /><br />
+        <p>By removing the <code class='white'>var</code> from the function, message is now a global variable and is accessible outside the function.</p>
+
+        <h3 id='data-type'>Data Types</h3>
+        <p>
+          There are 5 simple data types(also called <em>primative types</em>) in ECMAScript:
+          <em>Undefined, Null, Boolean, Number</em> and <em> String</em>. There is also a
+          complex data type called <b>Object</b>, which is an unordered list of name-value pairs.
+          Because there is no way to define your own data types in ECMAScript, all values can be
+          represented as one of these 6 data types. Having only 6 data types may seem like too
+          few to fully represent data; however, ECMAScript's data types have <b>dynamic</b> aspects
+          that make each single data type behave like several.
+        </p>
+
+        <h3 id='typeof'>The typeof operator</h3>
+        <p>
+          Because ECMAScript is loosly typed, there needs to be a way to determine the data type of a
+          given variable. The <code class='white'>typeof</code> operator provides that information Using <b>typeof</b>
+          on a value returns on of the following strings:
+        </p>
+          <ul>
+            <li><code class='white'>"undefined"</code> if the value is undefined.</li>
+            <li><code class='white'>"boolean"</code> if the value is a Boolean.</li>
+            <li><code class='white'>"string"</code> if the value is a string.</li>
+            <li><code class='white'>"number"</code> if the value is a number</li>
+            <li><code class='white'>"object"</code> if the value is an object (other than a function) or null.</li>
+            <li><code class='white'>"function"</code> if the value is a function.</li>
+          </ul>
+        <p>
+          The <b>typeof</b> operator is called like this:
+        </p>
+          <script type="text/javascript" charset="utf-8">
+            var message = 'some string';
+            var myFunc  = function(name) { return 'Hello there, ' + name; };
+            console.log('typeof message: ' + typeof message);
+            console.log('typeof(message)' + typeof (message));
+            console.log('typeof 95' + typeof 95);
+            console.log('typeof myFunc' + typeof myFunc);
+          </script>
+          <pre class='prettyprint code'>var message = 'some string';
+var myFunc = function (name){ return 'Hello there '+ name;  }
+console.log(typeof message); // 'string'
+console.log(typeof(message)); // 'string'
+console.log(typeof 95); // 'number'
+console.log(typeof myFunc); // 'function'
+          </pre>
+        <p>
+          Note that because <b>typeof</b> is an operator and not a function,
+          no parentheses are required (although they can be used).
+        </p>
+        <p>
+          Be aware that the <b>typeof</b> operator can return confusing results.
+          Calling <b>typeof</b> null returns a value of "<b>object</b>" is returned.
+          Technically, functions are considered <em>Objects</em> in ECMAScript but
+          when <b>typeof</b> is called on a function, "<b>function</b>" is returned
+        </p>
+
+        <h3 id='undefined'>The Undefined Type</h3>
+        <p>The Undefined type has only one value, which is the special value <code class='white'>undefined</code></p>
+          <pre class="prettyprint code">var message;<br />console.log(message == undefined)</pre>
+        <script type="text/javascript" charset="utf-8">
+          var message = undefined;
+          console.log('message == undefined '+ (message == undefined));
+        </script>
+        <p>So declaring a variable but not setting it's value will give you an <code class="white">undefined</code>
+         value. Trying to access a variable that hasn't been defined will throw an error.</p>
+        <pre class='prettyprint code'>console.log(message);// undefined <br />console.log(age);// age is not defined</pre>
+        <script>console.log('this is console.log(age)'+ age);// age is not defined</script>
+        <p>The <code class="white">typeof</code> operator returns '<code class="white">undefined</code>'
+        when called on an uninitialized variable, but also returns <code class="white">"undefined"</code>
+        when called on an undeclared variable, which can be a bit confusing.</p>
+
+        <h3 id='null'>The Null Type</h3>
+        <p>The Null type is the second data type that has only one value:
+        the special value <code class="white">null</code>. Logically, a
+        <code class="white">null</code> value is an empty object pointer,
+        which is why <code class="white">typeof</code> returns <code class="white">
+        "object"</code> when it's passed a <code class="white">null</code> value
+        in the following example: </p>
+        <pre class='prettyprint code'>var car = null;
+console.log(typeof car);// "object"
+        </pre>
+        <script type="text/javascript" charset="utf-8">
+          var car = null;
+          console.log('console.log(typeof car) '+ typeof car);
+        </script>
+        <p>When defining a variable that is meant to later hold an object, it
+        is advisable to initialize the variable to <code class="white">null</code>
+         to determine if the variable has been filled with an object reference
+        at a later time, such as in this example: </p>
+        <pre class='prettyprint code'>if (car != null) {<br />&nbsp;&nbsp;// do something with car <br />}</pre>
+        <p>The value <code class="white">undefined</code> is a derivative of <code class="white">
+        null</code>, so ECMA-262 defines them to be superficially equal as follows:</p>
+        <p><code class='prettyprint code'>console.log(null == undefined)// true</code></p>
+        <p>Using the equality operator (==) between <b>null</b> and <b>undefined</b>
+        always return <b>true</b>, though keep in mind that this operator converts its
+        operands for comparison purposes</p>
+        <p>Even though <b>null</b> and <b>undefined</b> are related, they have
+        very different uses. As mentioned previously, you should never explicitly
+        set the value of a variable to <code class="white">undefined</code>,
+        but the same does not hold true for <code class="white">null</code>
+        Any time an object is expected but is not available, <b>null</b>
+        should be used in its place. This helps keep the paradigm of <code class="white">null</code>
+        as an empty object pointer and further differentiates it from <code class="white">undefined</code>.</p>
+
+        <h3 id='boolean'>The Boolean Type</h3>
+        <p>The Boolean type is one of the most frequently used types in ECMAScript and has only
+        two literal values: <b>true</b> and <b>false</b>. These values are distinct from numeric
+        values, so <b>true</b> is not equal to <b>1</b>, and <b>false</b> is not equal to
+        <b>0</b>. Assignment of Boolean values to variables is as follows: </p>
+        <p><code class='prettyprint code'>var found = true;<br />var lost = false;</code></p>
+        <p>Note that the Boolean literals <b>true</b> and <b>false</b> are case-sensitive,
+        so <b>True</b> and <b>False</b> (and other mixings of uppercase and lowercase) are
+        valid as identifiers but not as Boolean values.</p>
+        <p>Though there are just two literal Boolean values, all types of values have
+        Boolean equivalents in ECMAScript. To convert a value into its Boolean equivalent,
+        the specail <code class="white">Boolean()</code> casting function is called, like this: </p>
+        <p><code class='prettyprint code'>var message = 'Hello, JavaScript!';<br />var messageAsBoolean = Boolean(message);</code></p>
+        <p>In this example, the string <b>message</b> is converted into a Boolean value and stored
+        in <code class="white">messageAsBoolean</code>. The <code class="white">Boolean()</code>
+        casting function can be called on any type of data and will always return a Boolean value.
+        The rules for when a value is converted to <code class="white">true</code> or
+        <code class="white">false</code> depend on the data type as much as the actual value.</p>
+        <script type="text/javascript" charset="utf-8">
+          var message = 'Hello JavaScript!';
+          console.log('console.log(message) ' + message);
+          var messageAsBoolean = Boolean(message);
+          console.log('console.log(messageAsBoolean) ' + messageAsBoolean);
+        </script>
+        <p>These conversions are important to understand because flow-control
+        statements, such as the <code class="white">if</code> statement,
+        automatically perform this Boolean conversion, as shown here: </p>
+        <p><code class='prettyprint code'>var message = 'I love JavaScript';<br />if (message) { <br />&nbsp;
+          &nbsp; console.log('Value is true');<br />}</code></p>
+        <p>In this example, the console log will be displayed because the string
+        <code class="white">message</code> is automatically converted into its
+        Boolean equivalent (true). It's important to understand what variable you're
+        using in a flow-control statement because of this automatic conversion. Mistakenly
+        using an object instead of a Boolean can drastically alter the flow of your application.</p>
+
+        <h3 id="num">The Number Type</h3>
+        <p>
+          The Number type is perhaps the most interesting data type in ECMAScript, which uses the
+          IEEE-754 format to represent both integers and floating point values (also called double-
+          percision values in some languages). To support the various types of numbers, there are
+          several different number literal formats.
+        </p>
+        <p>
+          The most basic number literal format is that of a decimal integer, which can be entered directly
+          as shown here:
+        </p>
+        <p><code class='prettyprint code'>var intNum = 55; // integer</code></p>
+        <p>Integers can also be represented as either octal (base 8) or hexidecimal (base 16) literals.
+         For an octal literal, the first digit must be a zero(0) followed by a sequence of octal digits
+        (numbers 0 - 7). If a number is out of this range is detected in the literal, then the leading
+        zero is ignored and the number is treated as a decimal, as in the following examples: </p>
+        <p><code class='prettyprint code'>var octalNum1 = 070; // octal for 56 <br />var octalNum2 = 079; // invalid octal - interpreted as 79
+        <br />var octalNum3 = 08; // invalid octal = interpreted as 8</code></p>
+        <script>
+          var octalNum1 = 070;
+          console.log('var octalNum1 = 070 is octal '+ octalNum1);
+          var octalNum2 = 077;
+          console.log('var octalNum2 = 077 is octal ' + octalNum2);
+          var octalNum3 = 079;
+          console.log('var octalNum3 = 079 is not an octal number because the number is out of octal range '+ octalNum3);
+        </script>
+        <p>Octal literals are invalid when running in strict mode and will cause a syntax error.</p>
+        <p>
+          To create a hexadecimal literal, you must make the first 2 characters 0x(case sensitive)
+          followed by any number of hexadecimal digits (0 - 9, and A - F). Letters may be in upper or lower
+          case. Here's an example:
+        </p>
+        <p><code class='prettyprint code'>var hexNum1 = 0xA;// 10<br />var hexNum2 = 0x1f;// 31</code></p>
+        <script>
+          var hexNum1 = 0xA;
+          console.log('hexNum1 = 0xA is hexadecimal '+ hexNum1);
+          var hexNum2 = 0x1f;
+          console.log('hexNum1 = 0x1f is hexadecimal '+ hexNum2);
+        </script>
+        <p>
+        Numbers created using hexadecimal or octal format are treated
+        ad decimal numbers in all arithmetic operations.
+        </p>
+
+        <h5>Floating-Point Values</h5>
+        <p>
+          To define a floating-point value, you must include a decimal point and
+          at least one number after the decimal point. Although an integer is not
+          necessary before a decimal point, it is recommended. Here are some
+          examples:
+        </p>
+        <p>
+          <code class='prettyprint code'>var floatNum1 = 1.1;<br />var floatNum2 = 0.1;<br />var floatNum3 = .1;// valid but not recommended</code>
+        </p>
+        <p>
+          Because storing floating-point values uses twice as much memory as storing integer values,
+          ECMAScript always looks for ways to convert values into integers. When there is no digit
+          after the decimal point, the number becomes an integer. Likewise, if the number being
+          represented is a whole number (such as 1.0), it will be converted into an integer, as
+          in this example:
+        </p>
+        <code class='prettyprint code'>
+          var floatNum1 = 1.;// missing digit after the decimal - interperted as integer 1<br>
+          var floatNum2 = 10.0;// whole number - interpreted as integer 10
+        </code>
+      </article>
+    </div>
+  </section>
+  <footer>
+    <div class='inner'>
+      <p>Exercises from the book by Nicholas Zakas</p>
+      <a class='go-top' href="#">go up</a>
+    </div>
+  </footer>
+  <script src='assets/js/underscore.js'></script>
+  <script src='assets/js/jquery.js'></script>
+  <script src='assets/js/velocity.js'></script>
+  <script src='assets/js/app.js'></script>
+</body>
+</html>
