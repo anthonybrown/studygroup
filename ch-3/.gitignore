@@ -38,4 +38,4 @@ Thumbs.db
 
 # vim's .un~ file
 ###############
-.un~
+*.un~
