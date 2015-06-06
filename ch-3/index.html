@@ -20,11 +20,13 @@
     <h2>Main Nav</h2>
     <ul class='cf' id="main-nav">
       <li class="item1"><a href="#vars">variable</a></li>
-      <li class="item2"><a href="#typeof">typeof</a></li>
-      <li class="item3"><a href="#undefined">undefined</a></li>
-      <li class="item4"><a href="#null">null</a></li>
-      <li class="item5"><a href="#boolean">boolean</a></li>
-      <li class="item6"><a href="#num">numbers</a></li>
+      <li class="item2"><a href="#data">data types</a></li>
+      <li class="item3"><a href="#typeof">typeof</a></li>
+      <li class="item4"><a href="#undefined">undefined</a></li>
+      <li class="item5"><a href="#null">null</a></li>
+      <li class="item6"><a href="#boolean">boolean</a></li>
+      <li class="item7"><a href="#num">numbers</a></li>
+      <li class="item8"><a href="#string">string type</a></li>
     </ul>
   </nav>
   <header>
@@ -32,16 +34,20 @@
     <div class='cf inner'>
       <h1>Professional JavaScript</h1>
       <p>for web developers 3<sup>rd</sup> edition.</p>
+        <small>
+          <em>I am documenting the reading from <b>Professional JavaScrpt for Web Developers</b> not only for my study group,
+            but also for my own reference. Since I am reading the book and creating the documentation, there will be direct
+            quotes from the book and some of my own thoughts will be intertwined in the text.</em>
+        </small>
+        <small> Check out the console,
+          some of code examples are ran in there.
+        </small>
+
     </div>
   </header>
   <section class='cf' id="main">
     <div class='inner'>
       <article id='main-article'>
-        <small>
-          <em>This is for the mod dev study group. I am documenting the reading from <b>Professional JavaScrpt for Web Developers</b>
-          It helps me to remember if I write it all down ( I guess it's how I retain things better ) and hopefully
-          it will help others that are starting out learning JavaScript.</em>
-        </small>
         <h1>Chapter 3</h1>
         <h3 id='vars'>Varibales</h3>
         <p>
@@ -80,7 +86,7 @@
         <pre class='prettyprint code'>test()<br>alert(message)// hi, because message is now a global variable.</pre><br /><br />
         <p>By removing the <code class='white'>var</code> from the function, message is now a global variable and is accessible outside the function.</p>
 
-        <h3 id='data-type'>Data Types</h3>
+        <h3 id='data'>Data Types</h3>
         <p>
           There are 5 simple data types(also called <em>primative types</em>) in ECMAScript:
           <em>Undefined, Null, Boolean, Number</em> and <em> String</em>. There is also a
@@ -116,13 +122,14 @@
             console.log('typeof 95' + typeof 95);
             console.log('typeof myFunc' + typeof myFunc);
           </script>
-          <pre class='prettyprint code'>var message = 'some string';
+<pre class='prettyprint code'>
+var message = 'some string';
 var myFunc = function (name){ return 'Hello there '+ name;  }
 console.log(typeof message); // 'string'
 console.log(typeof(message)); // 'string'
 console.log(typeof 95); // 'number'
 console.log(typeof myFunc); // 'function'
-          </pre>
+</pre>
         <p>
           Note that because <b>typeof</b> is an operator and not a function,
           no parentheses are required (although they can be used).
@@ -261,7 +268,7 @@ console.log(typeof car);// "object"
         ad decimal numbers in all arithmetic operations.
         </p>
 
-        <h5>Floating-Point Values</h5>
+        <h4>Floating-Point Values</h4>
         <p>
           To define a floating-point value, you must include a decimal point and
           at least one number after the decimal point. Although an integer is not
@@ -282,6 +289,229 @@ console.log(typeof car);// "object"
           var floatNum1 = 1.;// missing digit after the decimal - interperted as integer 1<br>
           var floatNum2 = 10.0;// whole number - interpreted as integer 10
         </code>
+        <p>
+          Floating point numbers are accurate up to 17 decimal places but are far less accurate in arithmetic
+          computations that whole numbers. For instance, adding 0.1 and 0.2 produces 0.30000000000000004, instead
+          of 0.3. These small rounding errors make it difficult to test for specific floating-point values.
+          Consider this example:
+        </p>
+<pre class="prettyprint code">
+  if (a + b == 0.3) { // avoid!
+    alert('You got 0.3');
+  }
+</pre>
+        <p>
+          Here the sum of two numbers is tested to see if it's equal to 0.3.
+          This will work for 0.05 and 0.25 and for 0.15 and 0.15. But if applied
+          to 0.1 and 0.2, as discussed previously, this test would fail.
+          Therefore you should never test for specific floating-point values.
+        </p>
+        <h4>Range of Values</h4>
+        <p>
+          The smallest number that can be represented in ECMAScript is stored in
+          <b>Number.MIN_VALUE</b> and is 5e-324 on most browsers; the largest number
+          is stored in <b>Number.MAX_VALUE</b> and is 1.7976931348623157e+308 on most
+          browsers. If a calculation results in a number that cannot be represented by
+          JavaScript's <strong>numberic range</strong>, the number automatically gets
+          the special value of <b>Infinity</b>. Any negative number that can't be
+          represented is <b>-Infinity</b>.
+        </p>
+        <p>
+          To determine if a value is finite(that is, it occurs between the minimum and the maximum),
+          there is the <b>isFinite()</b> function. This function returns <code class="white">true</code>
+          only if the argument is between the minimum or maximum values. as in this example:
+        </p>
+<pre class="prettyprint code">
+  var result = Number.MAX_VALUE + Number.MAX_VALUE;
+  console.log(isFinite(result)); // false
+</pre>
+      <h4>NaN</h4>
+      <p>
+        There is a special numeric value called <code class="white">NaN</code>, short for
+        <em>Not a Number</em>, which is used to indicate when an operation inteded to return
+        a number has failed (as opposed to throwing an error). For example, dividing any
+        number by 0 typically causes an error in other programming languages, halting code
+        execution. In ECMAScript, dividing a number by 0 returns <code class="white">NaN</code>
+        which allows other processing to continue.
+      </p>
+      <p>
+        The value <code class='white'>NaN</code> always returns <code class='white'>NaN</code>
+        <b>NaN</b> is not equal to anything, including itself!
+        <code class="prettyprint code">console.log(NaN == NaN);// false</code>
+      </p>
+      <p>
+        ECMAScript does provide a <code class="white">isNaN()</code> function. This function
+        accepts one argument and can be of any data type, to determine if the value is "not a number."
+        When a value is passed into <b>isNaN()</b> an attempt is made to convert it into a <code class="white">Number</code>
+        Some nonnumber values convert into numbers directly, like the string '10' or a Boolean value.
+        Any value that cannot be converted into a number causes the function to return <code class="white">true</code>
+        Consider the following:
+      </p>
+<pre class='prettyprint code'>
+console.log(isNaN(NaN));     // true
+console.log(isNaN(10));      // false->10 is a number
+console.log(isNaN('10'));    // false->can be converted
+console.log(isNaN('blue');   // false->cannot be converted
+console.log(isNaN(true));    // false->can be converted to 1.
+</pre>
+        <p>
+          <em>
+            Although typically not done, </em><b>isNaN()</b><em> can be applied
+            to objects. In that case, the object's</em> <b>valueOf()</b> <em>
+            method is first called to determine if the returned value can be converted into a
+            number. If not the  </em><b>toString()</b><em> method is called and its returned
+            value is tested as well. This is the general way that built-in functions and operators
+            work in ECMAScript
+          </em>
+        </p>
+
+        <h4>Number Conversions</h4>
+        <p>
+          There are three functions to convert nonnumneric values into numbers:
+        </p>
+<pre class="prettyprint code">
+Number() //    casting function
+parseInt()//   converts a string into an integer
+parseFloat()// converts a string into a floating-point value
+</pre>
+        <p>
+          The <code class="white">Number()</code> function can be used
+          on any data type. <code class="white">parseInt()</code> and
+          <code class="white">parseFloat()</code> are used to convert
+          strings to numbers. Each of these functions reacts differently
+          to the same input.
+        </p>
+        <p>
+          The <code class="white">Number()</code> function performs conversions
+          based on certain rules:
+        </p>
+        <ul>
+          <li>
+            When applied to Boolean values, <b>true</b> and <b>false</b> get
+            converted to 1 and 0, respectivly.
+          </li>
+          <li>When applied to numbers, the value is passed through and returned.</li>
+          <li>When applied to <b>null</b>, <code class="white">Number()</code> returns 0.</li>
+          <li>When applied to <b>undefined</b>, <code class="white">Number()</code> returns <b>NaN</b></li>
+          <li>
+            When applied to <b>strings</b> the following rules apply:
+            <ul>
+              <li>
+                If the string contains only numbers, optionally proceded by a + or - sign,
+                it is always converted to an integer, so "1" is 1 and "10" is 10 and so on.
+              </li>
+              <li>
+                If the string contains a valid floating-point number, than it's converted to
+                a floating-point value, <b>remember, leading zeros are ignored in each case.</b>
+              </li>
+              <li>
+                If the string contains a valid hexadecimal format, it is converted to the matching
+                number.
+              </li>
+              <li>
+                If the string is empty, it's converted to 0.
+              </li>
+              <li>
+                If the string contains anything other than the previous formats,
+                then it is converted to <code class="white">NaN</code>
+              </li>
+            </ul>
+          </li>
+          <li>
+            When applied to <b>Objects</b> the <code class="white">valueOf()</code>
+            method is called and the returned value is converted based on the previously
+            described rules. If that conversion results in <code class="white">NaN</code>
+            the <code class="white">toString()</code> method is called and the rules
+            for converting strings are applied.
+          </li>
+        </ul>
+        <p>
+          Because of the complexities of the <code class="white">Number()</code>
+          casting function when converting strings, the <code class="white">parseInt()</code>
+          function is usally used for integers.
+        </p>
+        <p>
+          The <code class="white">parseInt()</code> function looks at the string much more
+          closely than the <code class="white">Number()</code> function does. It looks for
+          numbers in the string and ends on the first nonnumeric pattern it finds. Leading
+          white-space is also ignored.<code class="white">parseInt()</code>
+          will always return <code class="white">NaN</code> If the first value isn't a number
+          or a + or - minus sign. Which is different than the <code class="white">Number() </code>
+          function which will return 0. Here are some examples:
+        </p>
+<pre class='prettyprint code'>
+var num1 = parseInt("123green")// 123
+var num2 = parseInt('')// NaN
+var num3 = parseInt('0xA', 16)// 10
+var num4 = parseInt('33.3')// 33
+var num5 = parseInt('77')// 77
+</pre>
+        <p>
+          It is recommended to use a radix with <code class="white">parseInt()</code> because of
+          the way browsers handle the different versions of ECMAScript 3 and ECMAScript 5. So to
+          avoid unexpected results it's always recommended to use a radix with the <b>parseInt() </b>
+          function like so:
+        </p>
+<pre class='prettyprint code'>
+var num1 = parseInt('0xAF', 16)// 175
+var num2 = parseInt('077', 8)// 63
+var num3 = parseInt('AD')// NaN
+var num4 = parseInt('AD', 16)// 173
+var num5 = parseInt('074', 10)// 74
+var num6 = parseInt('10', 2)// 2
+</pre>
+        <p>
+          So, always use the second parameter provided with <code class="white">parseInt()</code>
+          to avoid any unexpected results!
+        </p>
+
+        <p>
+          The <code class="white">parseFloat()</code> function is similar except that leading zero's
+          are ignored. <code class='white'>parseFloat()</code> will return a floating point value
+          but will ignore the second decimal it encounters and stop executing.
+        </p>
+<pre class="prettyprint code">
+var num1 = parseFloat('33.3')// 33.3
+var num2 = parseFloat('098.77')// 98.77
+var num3 = parseFloat('0xAD')// 0
+var num4 = parseFloat('0xA')// 0
+var num5 = parseFloat('22.33.77')// 22.33
+var num6 = parseFloat('3.125e7')// 3.1250000
+</pre>
+        <h3 id='string'>The String Type</h3>
+        <p>
+          The String data type represents a sequence of zero or more 16-bit Unicode characters.
+          Strings can use either single or double quotes, unlike in PHP, they mean the same
+          thing as long as you use one or the other.
+        </p>
+        <h4>Character Literals</h4>
+        <p>
+          The String data type provides us with several character literals to represent nonprintable
+          characters:
+        </p>
+<pre class='prettyprint code'>
+\n          New line
+\t          Tab
+\b          Backspace
+\r          Carriage return
+\f          Form feed
+\\          Backslash
+\'          Single quote
+\"          Double quote
+\xnn        A character represented by hexidecimal code <b>nn</b>
+\unnnn      A unicode character represented bt the hexadecimal code <b>nnn</b>
+</pre>
+        <p>
+          The character literals can be included anywhere in the string and will be
+           interpreted as if they where a single character, as shown here:
+        </p>
+<pre class='prettyprint code'>
+var text = 'This is the letter sigma: \u03a3'
+</pre>
+<script>
+  var text = 'This is the letter sigma: \u03a3';
+  console.log(text);
+</script>
       </article>
     </div>
   </section>
