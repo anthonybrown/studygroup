@@ -513,16 +513,97 @@ output.innerHTML += test;
 <p id='result'></p>
 <script>
   var output = document.getElementById('result');
-  var text = 'This is the letter sigma: \u03a3';
+  var text = 'This is the letter sigma: \u03a3.';
   console.log(text);
   result.innerHTML += text;
+</script>
+        <p>
+          The escape is character is 6 long but our entire <code class="white">text</code>
+          is 28 characters long. This is because the escaped set is counted as one character
+          instead of the 6 that makes it up. You can find the length of any string by using
+          the <code class="white">length</code> property.
+        </p>
+<pre class="prettyprint code">
+var text = 'This is the letter sigma: \u03a3.'
+console.log(text.length);
+</pre>
+<script>
+console.log('the length of the text is '+ text.length + ' characters long!');
+</script>
+        <h4>The Nature of Strings</h4>
+        <p>
+          Strings are immutable in ECMAScript, meaning that once they are created,
+          their values cannot change. To change the string held in a variable, the
+          original string must be destroyed and the variable filled with another
+          string containing a new value.
+        </p>
+<pre class='prettyprint code'>
+var lang = 'Java';// Java
+lang = lang + 'Script';// Java + Script
+console.log(lang);// JavaScript
+</pre>
+<script>
+  var lang = 'Java';
+  lang = lang + 'Script';
+  console.log('Java + Script = '+ lang);
+</script>
+        <h4>Converting to a String</h4>
+        <p>
+          There are two ways to convert a value into a string. The first is to use
+          the <code class="white">toString()</code> method that almost every value
+          has. This method's only job is to return the string equivalent of the value.
+          Consider this example.
+        </p>
+<pre class="prettyprint code">
+var age = 11;
+var ageToString = age.toString(); // the string "11"
+var found = true;
+var foundAsString = found.toString();// the string "true"
+</pre>
+<script>
+var age = 11;
+console.log('var age: '+ age );
+var ageToString = age.toString(); // the string "11"
+console.log('ageToString: '+ ageToString);
+var found = true;
+console.log(found);
+var foundAsString = found.toString();// the string "true"
+console.log('found as string: '+ foundAsString);
+</script>
+        <p>
+          The <code class="white">toString()</code> method is available on values that are
+          numbers, Booleans, objects, and strings. Yes, each string returns a copy of itself.
+          If a value is <b>null</b> or <b>undefined</b>, this method is not available.
+        </p>
+        <p>
+          In most cases, <code class="white">toString()</code> doesn't have any arguments.
+          However, when used with a number value, <code class="white">toString()</code>
+          accepts a single parameter: the radix in which to output the number. By default
+          <code class="white">toString()</code> always returns a string representation of
+          the value. By passing in a radix <b>toString()</b> can output the value in Binary,
+          Octal, Hexadecimal, or any other valid base, as in this example:
+        </p>
+<pre class='prettyprint code'>
+var num = 10;
+console.log(num.toSting());// "10"
+console.log(num.toString(2))// "1010"
+console.log(num.toString(8))// "12"
+console.log(num.toString(16))// "a"
+</pre>
+<script type="text/javascript" charset="utf-8">
+  var num = 10;
+  console.log('No radix: ' + num.toString());
+  console.log('Radix of 2: ' + num.toString(2)+ ' is the binary representation of 10');
+  console.log('Radix of 8: ' + num.toString(8) + ' is the octal representation of 10');
+  console.log('Radix of 10: '+ num.toString(10) + ' is the decimal representation of 10');
+  console.log('Radix of 16: '+ num.toString(16) + ' is the hexadecimal representation of 10');
 </script>
       </article>
     </div>
   </section>
   <footer>
     <div class='inner'>
-      <p>Copyright 2015 &copy; Tony Brown Design and Development</p>
+      <p>&copy; Tony Brown Design and Development</p>
 
       <p id='datetime'></p>
       <a class='go-top' href="#">go up</a>
