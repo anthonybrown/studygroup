@@ -28,6 +28,7 @@
       <li class="item6"><a href="#boolean">boolean</a></li>
       <li class="item7"><a href="#num">numbers</a></li>
       <li class="item8"><a href="#string">string type</a></li>
+      <li class="item9"><a href="#object">object type</a></li>
     </ul>
   </nav>
   <header>
@@ -598,6 +599,60 @@ console.log(num.toString(16))// "a"
   console.log('Radix of 10: '+ num.toString(10) + ' is the decimal representation of 10');
   console.log('Radix of 16: '+ num.toString(16) + ' is the hexadecimal representation of 10');
 </script>
+        <h3 id='object'>The Object Type</h3>
+        <p>
+          Objects in ECMAScript start out as nonspecific groups of data and functionality.
+          Objects are creted by using the <code class="white">new</code> operator followed
+          by the name of the object type to create. Developers create their own objects by
+          creating instances of the <code class="white">Object</code> type and adding properties
+          and/or methods to it, as shown here:
+        </p>
+<pre class='prettyprint code'>
+var o = new Object();
+</pre>
+        <p>
+          This syntax is similar to Java, although ECMAScript requires parentheses to be used
+          only when providing arguments to the constructor. If there are no arguments, as in
+          the following example, then the parentheses can be omitted safely (though that's not recommended):
+        </p>
+<pre class='prettyprint code'>
+var o = new Object;// legal but not recommended.
+</pre>
+        <p>
+          Instances of <code class="white">Object</code> aren't very useful on their own, but
+          the concepts are important to understand, because, similar to <code class="white">
+            java.lang.Object</code> in Java, the <code class="white">Object</code> type in
+          ECMAScript is the base from which all other objects are derived. All of the properties
+          and methods of the <code class="white">Object</code> type are also present on other,
+          more specific objects.
+        </p>
+        <p>
+          Each <code class="white">Object</code> instance has the following properties and
+          methods:
+        </p>
+          <ul>
+            <li><code class="white">constructor</code> --- The function that was used to create
+            the object. In the previous example, the constructor is the <code class="white">Object()
+            </code> function.</li>
+            <li><code class="white">hasOwnProperty(<em>propertyName</em>)</code>--- Indicates if
+              the given property exists on the object instance(not on the prototype). The property
+              name must be specified as a string(for example, <code class="white">o.hasOwnProperty('name')</code>).
+            </li>
+            <li><code class="white">isPrototypeOf(object)</code> --- Determines if the object
+            is a prototype of another object.</li>
+            <li><code class="white">propertyIsEnumerable(propertyName)</code> --- Indicates if the
+            given property can be enumerated using the <code class="white">for-in</code> statement.
+            As with <code class="white">hasOwnProperty()</code>, the property name must be a string</li>
+            <li><code class="white">toLocaleString()</code> --- Returns a string representation of the
+            object that is appropriate for the locale of the execution environment.</li>
+            <li><code class="white">toString()</code> --- Returns a string representation of the object.</li>
+            <li><code class="white">valueOf()</code> --- Returns a string, number, or Boolean equivalent
+            of the object. It often returns the same value as <code class="white">toString()</code></li>
+          </ul>
+        <p>
+          Since <code class="white">Object</code> is the base for all objects in ECMAScript, every object
+          has these base properties and methods.
+        </p>
       </article>
     </div>
   </section>

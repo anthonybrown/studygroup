@@ -229,6 +229,7 @@ footer {
   background-color: #777;
   color: #fff;
   line-height: 1;
+  font-size: 0.625em;
 }
 
 /*=============================================================
@@ -335,7 +336,7 @@ header {
 
   footer {
     width: 100%;
-    font-size: 0.625em;
+    font-size: .825em;
   }
     #datetime {
       float: none;
