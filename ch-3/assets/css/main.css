@@ -335,6 +335,13 @@ header {
 
   footer {
     width: 100%;
+    font-size: 0.625em;
   }
+    #datetime {
+      float: none;
+      margin-top: -10px;
+      margin-right: 1.75em;
+    }
+
 
 }

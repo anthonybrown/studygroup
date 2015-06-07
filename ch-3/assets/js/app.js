@@ -70,3 +70,27 @@ $(function() {
   });
 
 });
+
+  // MomentJS date and time function
+  var datetime = null,
+        date = null;
+
+  // this is the function that updates the time
+  var update = function () {
+    // add a Date object to our date variable
+    date = moment(new Date());
+    // set the datetime variable with jQuery's html to update the DOM with
+    // our new formatted date
+    datetime.html(date.format('dddd, MMMM Do YYYY, h:mm:ss a'));
+  };
+
+    // add the formatted date to the page
+    // using jQuery to target a DOM element
+    // with an ID of 'datetime'
+    datetime = $('#datetime');
+    // execute our update function
+    update();
+    // call our update function every
+    // second
+    setInterval(update, 1000);
+
