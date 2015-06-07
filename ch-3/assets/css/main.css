@@ -1,3 +1,32 @@
+/*=============================================================
+  CSS Animations
+  ============================================================*/
+/* CSS Animations */
+@-webkit-keyframes fadeout {
+  0%   { background: #fff; }
+  10%   { background: #eee; }
+  100% { background: #fff; }
+}
+@-moz-keyframes fadeout {
+  0%   { background: #fff; }
+  10%   { background: #eee; }
+  100% { background: #fff; }
+}
+@-o-keyframes fadeout {
+  0%   { background: #fff; }
+  10%   { background: #eee; }
+  100% { background: #fff; }
+}
+@keyframes fadeout {
+  0%   { background: #fff; }
+  10%   { background: #eee; }
+  100% { background: #fff; }
+}
+
+/*=============================================================
+  Global Styles
+  ============================================================*/
+
 html {
   height: 100%;
   min-height: 100%;
@@ -94,7 +123,7 @@ h6 {
 
 header {
   width: 70%;
-  height: 275px;
+  height: auto;
   float: right;
 }
   header  h1 {
@@ -109,7 +138,6 @@ header {
 /*=============================================================
   Main Navigation Styles
   ============================================================*/
-
   nav {
     width: 300px;
     height: 100%;
@@ -143,6 +171,20 @@ header {
           nav a:hover {
             color: dodgerblue;
           }
+          a.menu-link {
+            float: right;
+            display: none;
+            padding: 1em;
+          }
+
+        nav[role=navigation] {
+          clear: both;
+          -webkit-transition: all 0.3s ease-out;
+          -moz-transition: all 0.3s ease-out;
+          -ms-transition: all 0.3s ease-out;
+          -o-transition: all 0.3s ease-out;
+          transition: all 0.3s ease-out;
+        }
 
 
 /*=============================================================
@@ -210,3 +252,89 @@ footer {
     text-decoration: none;
     background-color: rgba(0,0,0,0.7);
   }
+
+/*=============================================================
+  Media Queries
+  ============================================================*/
+
+@media screen and (max-width: 41.25em) {
+
+header {
+  width: 100%;
+  height: auto;
+  float: right;
+}
+  header  h1 {
+    margin: 0.3em 0 0;
+  }
+  a.menu-link {
+    text-decoration: none;
+    color: #fff;
+    float: right;
+    display: block;
+    padding: 1em;
+    background-color: rgba(0,0,0,0.3);
+    width: 100%;
+  }
+
+    nav[role=navigation] {
+      clear: both;
+      -webkit-transition: all 0.3s ease-out;
+      -moz-transition: all 0.3s ease-out;
+      -ms-transition: all 0.3s ease-out;
+      -o-transition: all 0.3s ease-out;
+      transition: all 0.3s ease-out;
+    }
+
+  .js nav[role=navigation] {
+    max-width: none;
+    position: static;
+    width: auto;
+  }
+
+.js nav[role=navigation] {
+    overflow: hidden;
+    max-height: 0;
+  }
+
+  nav[role=navigation].active {
+    max-height: 67em;
+  }
+
+  nav[role=navigation] ul {
+    margin: 0;
+    padding: 0;
+    /*border-top: 1px solid #808080;*/
+  }
+
+  nav[role=navigation] li {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  nav[role=navigation] li a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #eee;
+    display: block;
+    padding: 0.8em;
+    /*border-bottom: 1px solid #fff;
+    border-top: 1px solid #888;*/
+  }
+
+  section#main {
+    width: 100%;
+    float: right;
+  }
+
+  article {
+    width: 100%;
+    float: left;
+    clear: both;
+    margin: 1em 0;
+  }
+
+  footer {
+    width: 100%;
+  }
+
+}

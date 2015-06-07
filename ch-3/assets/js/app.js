@@ -1,3 +1,18 @@
+// setup responsive menu
+
+$(document).ready(function() {
+  $('body').addClass('js');
+  var $menu = $('#menu'),
+    $menulink = $('.menu-link');
+
+  $menulink.click(function() {
+    $menulink.toggleClass('active');
+    $menu.toggleClass('active');
+    return false;
+  });
+});
+
+
 // create some elements and append them to the page
 ;( function ($, _) {
 

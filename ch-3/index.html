@@ -16,7 +16,8 @@
   <script src='assets/js/moment.js'></script>
 </head>
 <body onload="prettyPrint()">
-  <nav class='cf'>
+  <a class='menu-link'href='#menu'>Menu</a>
+  <nav role='navigation' id='menu' class='cf'>
     <h2>Main Nav</h2>
     <ul class='cf' id="main-nav">
       <li class="item1"><a href="#vars">variable</a></li>
@@ -42,7 +43,6 @@
         <small> Check out the console,
           some of code examples are ran in there.
         </small>
-
     </div>
   </header>
   <section class='cf' id="main">
@@ -507,10 +507,15 @@ var num6 = parseFloat('3.125e7')// 3.1250000
         </p>
 <pre class='prettyprint code'>
 var text = 'This is the letter sigma: \u03a3'
+var output = document.getElementById('result');
+output.innerHTML += test;
 </pre>
+<p id='result'></p>
 <script>
+  var output = document.getElementById('result');
   var text = 'This is the letter sigma: \u03a3';
   console.log(text);
+  result.innerHTML += text;
 </script>
       </article>
     </div>
